@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
-function VideoTextEditWindow({ onClose, onSave, textData = "" }) {
+function VideoTextEditWindow({ onClose, onNext, textData = "" }) {
   const [editedText, setEditedText] = useState(textData);
 
-  const handleSave = () => {
-    onSave(editedText);
+  const handleNext = () => {
+    onNext(editedText);
   };
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-content modal-small" onClick={e => e.stopPropagation()}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
         <button className="close-button" onClick={onClose}>×</button>
         <div className="video-text-edit">
           <h2>Edit Video Text</h2>
@@ -20,8 +20,8 @@ function VideoTextEditWindow({ onClose, onSave, textData = "" }) {
             placeholder="Enter your text here..."
             rows={10}
           />
-          <button className="fn-btns" onClick={handleSave}>
-            Save
+          <button className="next-button" onClick={handleNext}>
+            Next
           </button>
         </div>
       </div>
