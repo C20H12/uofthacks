@@ -26,7 +26,6 @@ function App() {
       <ImageResults
         onClose={() => setCurrentView(null)}
         videoText={resultData?.videoText}
-        selectedOptions={resultData?.checkedItems}
       />
     )}
     <div className="landing-page">

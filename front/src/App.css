@@ -25,6 +25,7 @@
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  width: 100%;
 }
 
 .modal-backdrop {
@@ -171,7 +172,7 @@
 }
 
 .text-edit-area {
-  min-height: 60%;
+  min-height: 10%;
   padding: 12px;
   border-radius: 4px;
   background-color: #1a1a1a;
@@ -217,6 +218,8 @@
   grid-template-columns: auto auto;
   gap: 20px;
   padding: 20px;
+  width: 50%;
+  margin: 0 0 0 3rem;
 }
 
 .image-grid img {
@@ -230,15 +233,49 @@
   transform: scale(1.05);
 }
 
+.image-title {
+  font-size: 2rem;
+  margin: 10px 0;
+  color: white;
+  margin: .5rem;
+  height: fit-content;
+}
+
 .word-count {
   text-align: right;
-  margin: 8px 0;
+  margin: 3px 0;
   font-size: 0.9em;
   color: #888;
 }
 
 .text-error {
   color: #ff4444;
+}
+
+.alt-texts {
+  margin: 5px 0;
+}
+
+.alt-text-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.alt-text-chip {
+  background: #2a2a2a;
+  border: 1px solid #3f3f3f;
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.alt-text-chip:hover {
+  background: #3f3f3f;
+  border-color: #646cff;
 }
 
 /* ======================================================= Base styles ==========================================================================*/
