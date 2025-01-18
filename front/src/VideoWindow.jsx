@@ -79,7 +79,7 @@ function VideoWindow({ onClose, onNext }) {
     setIsLoading(true);
     try {
 
-      const res = await fetch(BACK_URL, {
+      const res = await fetch(BACK_URL + "/upload_video", {
         method: 'POST',
         body: file,
         headers: {
