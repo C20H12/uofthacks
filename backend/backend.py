@@ -124,6 +124,7 @@ def upload_video():
                                         start the sentence with the description. \
                                     Break down the video description into 4 scenes of sequential order. \
                                     Generate potential alternate ways of speaking that is short for a comic. \
+                                    DO NOT include the description of scene, only the alternate reality. \
                                     The description should only focus on actions/items."
 
     result_describe = gemini_model.generate_content([myfile, prompt_describe])
@@ -156,7 +157,7 @@ def generate_image():
         print(f"Received the following prompt: {prompt}")
         count = 0
 
-        number_images = 1
+        number_images = 4
 
         images = []
 
