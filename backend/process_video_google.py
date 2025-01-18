@@ -11,7 +11,7 @@ import time
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-myfile = genai.upload_file("petal_20250118_012647.mp4")
+myfile = genai.upload_file("petal_20250118_012647.mp4")#"decoded_video.mp4")#"petal_20250118_012647.mp4")
 print(f"{myfile=}")
 
 # Videos need to be processed before you can use them.
@@ -21,9 +21,12 @@ while myfile.state.name == "PROCESSING":
     myfile = genai.get_file(myfile.name)
 
 model = genai.GenerativeModel("gemini-1.5-flash")
-result = model.generate_content([myfile, "Describe this video clip, DO NOT mention people in the description. Instead replace with cartoon characters. \
+result = model.generate_content([myfile, "Describe this video clip, DO NOT mention people in the description. \
+                                 Instead evaluate the mood of the video, and decide on the best way (through animal, object, symbol, etc) to replace the human. \
                                  KEEP the description within 50 words.\
                                 Highlight actions/items, and the emotions that is involved. \
+                                 Break down the video description into 4 scenes of sequential order. \
+                                    Generate potential alternate ways of speaking that is short for a comic. \
                                 The description should only focus on the actions/items. Then, using this description, \
                                  generate an alternate reality for the following text that shows a better outcome, \
                                  for example, the alternate reality for late to work, is being early."])
@@ -49,11 +52,18 @@ count = 0
 
 images = []
 
+MAX_ATTEMPTS = 4
+
 while len(images) <= 0 and count < MAX_ATTEMPTS: 
+    # if count != 0: 
+    #     prompt = genai.GenerativeModel("gemini-1.5-flash").generate_content([f"Modify the following to NOT include PEOPLE, \
+    #                                                and make it more safe and appropriate: {prompt}"]).text
+    #     print(f"Modified prompt: {prompt}")
     images = model.generate_images(
-        prompt=prompt,
+        prompt=prompt + f"Generate a image that is split into a grid that contains all 4 scenes. No need to include speech bubbles.",
+           #Include speech bubbles for what is being said for each scene.",
         # Optional parameters
-        number_of_images=4,
+        number_of_images=1,
         language="en",
         # You can't use a seed value and watermark at the same time.
         # add_watermark=False,
