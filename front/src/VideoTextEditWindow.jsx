@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function VideoTextEditWindow({ onClose, onSave, textData = "" }) {
+function VideoTextEditWindow({ onClose, onSave, textData, altData }) {
   const [editedText, setEditedText] = useState(textData);
   const [wordCount, setWordCount] = useState(0);
   const CHR_LIMIT = 500;
@@ -21,6 +21,10 @@ function VideoTextEditWindow({ onClose, onSave, textData = "" }) {
     }
   };
 
+  const handleAltClick = (altText) => {
+    setEditedText(altText);
+  };
+
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content modal-small" onClick={e => e.stopPropagation()}>
@@ -36,9 +40,26 @@ function VideoTextEditWindow({ onClose, onSave, textData = "" }) {
           />
           <div className="word-count">
             <span className={wordCount > CHR_LIMIT ? 'text-error' : ''}>
-              {wordCount}/{CHR_LIMIT} words
+              {wordCount}/{CHR_LIMIT} characters
             </span>
           </div>
+          {altData.length > 0 && (
+            <div className="alt-texts">
+              <h3>Alternative Descriptions:</h3>
+              <div className="alt-text-chips">
+                {altData.map((alt, index) => (
+                  <button
+                    key={index}
+                    className="alt-text-chip"
+                    onClick={() => handleAltClick(alt)}
+                  >
+                    {alt}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           <button 
             className="fn-btns" 
             onClick={handleSave}

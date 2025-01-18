@@ -1,30 +1,33 @@
 import { useState, useRef } from 'react';
 import VideoTextEditWindow from './VideoTextEditWindow';
 
-export const BACK_URL = "https://8835-138-51-73-112.ngrok-free.app/";
+export const BACK_URL = "https://4163cb1d3bd36a.lhr.life";
 
 function VideoWindow({ onClose, onNext }) {
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingStatus, setLoadingStatus] = useState({status: "Initializing..."});
   const [isUploaded, setIsUploaded] = useState(false);
   const [videoUrl, setVideoUrl] = useState(null);
   const [checkedItems, setCheckedItems] = useState([]);
   const [showTextEdit, setShowTextEdit] = useState(false);
   const [videoText, setVideoText] = useState("");
+  const [altText, setAltText] = useState([]);
   const fileInputRef = useRef(null);
 
-  const checklistItems = [
-    'Object Detection',
-    'Scene Description',
-    'Action Recognition',
-    'Emotion Detection',
-    'Environmental Context',
-    'Text Recognition (OCR)',
-    'Anomaly Detection',
-    'Object Counting',
-    'Color Analysis',
-    'Weather Conditions'
-  ];
+  const options = {
+    'Object Detection': "Identify all objects present in the frame.",
+    'Scene Description': "Describe the scene depicted in the frame.",
+    'Action Recognition': "What activity is the person engaging in?",
+    'Emotion Detection': "Determine the emotions of the individuals shown.",
+    'Environmental Context': "Identify the setting or location shown.",
+    'Text Recognition (OCR)': "ext Recognition “Extract any text present in the frame.",
+    'Anomaly Detection': "Identify any unusual elements in the frame.",
+    'Object Counting': "Count the number of [specific object] present.",
+    'Color Analysis': "Describe the color scheme of the scene.",
+    'Weather Conditions': "Determine the weather depicted in the frame."
+  };
+  const checklistItems = Object.keys(options);
 
   const handleCheckItem = (item) => {
     setCheckedItems(prev => 
@@ -77,6 +80,10 @@ function VideoWindow({ onClose, onNext }) {
 
   const uploadVideo = async (file) => {
     setIsLoading(true);
+    const intId = setInterval(async () => {
+      const status = await fetch(BACK_URL + "/status");
+      setLoadingStatus(await status.json())
+    }, 1000);
     try {
       const buffer = await file.arrayBuffer();
       let binary = '';
@@ -86,14 +93,24 @@ function VideoWindow({ onClose, onNext }) {
         binary += String.fromCharCode(bytes[i]);
       }
       const b64bytes = btoa(binary);
-      console.log(b64bytes)
+      // console.log("b64bytes")
       const res = await fetch(BACK_URL + "/upload_video", {
         method: 'POST',
-        body: ""
+        body: JSON.stringify({
+          "video_file": b64bytes,
+          "options": checkedItems.map(ci => options[ci])
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        }
       });
-      console.log(res);
-      
 
+      const txt = await res.json()
+      clearInterval(intId)
+      
+      console.log(txt)
+      setVideoText(txt.description);
+      setAltText(txt.alternates)
       setVideoUrl(URL.createObjectURL(file));
       setIsUploaded(true);
     } catch (error) {
@@ -106,8 +123,7 @@ function VideoWindow({ onClose, onNext }) {
 
   const handleNext = () => {
     onNext({
-      videoText,
-      checkedItems
+      videoText
     });
   };
 
@@ -131,7 +147,7 @@ function VideoWindow({ onClose, onNext }) {
                 {isLoading ? (
                   <div className="loading">
                     <div className="spinner"></div>
-                    <p>Uploading...</p>
+                    <p>{loadingStatus.status}</p>
                   </div>
                 ) : (
                   <>
@@ -181,6 +197,7 @@ function VideoWindow({ onClose, onNext }) {
             onClose={() => setShowTextEdit(false)}
             onSave={handleTextSave}
             textData={videoText}
+            altData={altText}
           />
         )
       }

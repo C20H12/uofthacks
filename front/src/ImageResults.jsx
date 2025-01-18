@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import {BACK_URL} from "./VideoWindow"
 
-function ImageResults({ onClose, videoText, selectedOptions }) {
+function ImageResults({ onClose, videoText }) {
   const [isLoading, setIsLoading] = useState(true);
   const [images, setImages] = useState([]);
+  const [title, setTitle] = useState("");
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -11,26 +12,29 @@ function ImageResults({ onClose, videoText, selectedOptions }) {
   }, []);
 
   const generateImages = async () => {
-    console.log(videoText, selectedOptions, BACK_URL)
+    console.log(videoText, BACK_URL)
     try {
       setIsLoading(true);
-      // const response = await fetch('YOUR_API_ENDPOINT', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     text: videoText,
-      //     options: selectedOptions
-      //   }),
-      // });
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      // const data = await response.json();
-      
+      const res = await fetch(BACK_URL + "/generate_image", {
+        method: 'POST',
+        body: JSON.stringify({
+          "text": videoText.slice(0, 500),
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
+      const data = await res.json();
+      console.log(data)
       // setImages(data.images);
-      setImages(["a", "a", "a", "a"]);
+      if (typeof data.response === "string") {
+        alert(data.response);
+        return;
+      }
+      setImages(data.response.map(imgurl => "data:image/png;base64," + imgurl));
+      setTitle(data.title);
     } catch (err) {
-      setError('Failed to generate images');
+      setError('Failed to generate images ' + err);
     } finally {
       setIsLoading(false);
     }
@@ -49,11 +53,14 @@ function ImageResults({ onClose, videoText, selectedOptions }) {
         ) : error ? (
           <div className="error">{error}</div>
         ) : (
-          <div className="image-grid">
-            {images.map((image, index) => (
-              <img key={index} src={image} alt={`Generated ${index + 1}`} />
-            ))}
-          </div>
+          <>
+            <div className="image-grid">
+              {images.map((image, index) => (
+                <img key={index} src={image} alt={`Generated ${index + 1}`} />
+              ))}
+            </div>
+            <h2 className="image-title">{title}</h2>
+          </>
         )}
       </div>
     </div>
