@@ -3,6 +3,7 @@ import VideoWindow from './VideoWindow';
 import ImageResults from './ImageResults';
 import './App.css'
 
+
 function App() {
   const [currentView, setCurrentView] = useState(''); // 'video' or 'results'
   const [resultData, setResultData] = useState(null);
