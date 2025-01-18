@@ -7,13 +7,8 @@ function App() {
   const [isOpen, setIsOpen] = useState(false)
   const [currentView, setCurrentView] = useState('upload') // 'upload' or 'edit'
 
-  const handleNext = () => {
-    setCurrentView('edit')
-  }
-
   const handleClose = () => {
     setIsOpen(false)
-    setCurrentView('upload')
   }
 
   return (
@@ -23,11 +18,8 @@ function App() {
         <button className="open-button" onClick={() => setIsOpen(true)}>
           Upload Video
         </button>
-        {isOpen && currentView === 'upload' && (
-          <VideoWindow onClose={handleClose} onNext={handleNext} />
-        )}
-        {isOpen && currentView === 'edit' && (
-          <VideoTextEditWindow onClose={handleClose} />
+        {isOpen && (
+          <VideoWindow onClose={handleClose} />
         )}
       </div>
     </>
