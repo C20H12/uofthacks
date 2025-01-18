@@ -1,36 +1,10 @@
 import { useState, useRef } from 'react';
-import VideoTextEditWindow from './VideoTextEditWindow';
 
 function VideoWindow({ onClose, onNext }) {
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
-  const [videoUrl, setVideoUrl] = useState(null);
-  const [checkedItems, setCheckedItems] = useState([]);
-  const [showTextEdit, setShowTextEdit] = useState(false);
-  const [videoText, setVideoText] = useState("");
   const fileInputRef = useRef(null);
-
-  const checklistItems = [
-    'Object Detection',
-    'Scene Description',
-    'Action Recognition',
-    'Emotion Detection',
-    'Environmental Context',
-    'Text Recognition (OCR)',
-    'Anomaly Detection',
-    'Object Counting',
-    'Color Analysis',
-    'Weather Conditions'
-  ];
-
-  const handleCheckItem = (item) => {
-    setCheckedItems(prev => 
-      prev.includes(item) 
-        ? prev.filter(i => i !== item)
-        : [...prev, item]
-    );
-  };
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -52,15 +26,6 @@ function VideoWindow({ onClose, onNext }) {
     const files = e.target.files;
     handleFiles(files);
   };
-  
-  const handleTextEdit = () => {
-    setShowTextEdit(true);
-  };
-
-  const handleTextSave = (text) => {
-    setVideoText(text);
-    setShowTextEdit(false);
-  };
 
   const handleFiles = (files) => {
     if (files.length > 0) {
@@ -76,12 +41,13 @@ function VideoWindow({ onClose, onNext }) {
   const uploadVideo = async (file) => {
     setIsLoading(true);
     try {
-      // Simulate upload and processing
       await new Promise(resolve => setTimeout(resolve, 2000));
-      setVideoUrl(URL.createObjectURL(file));
+      // Add your actual upload logic here
+      console.log('Video uploaded:', file.name);
       setIsUploaded(true);
     } catch (error) {
       alert("error: " + error);
+      console.error('Upload failed:', error);
     } finally {
       setIsLoading(false);
     }
@@ -95,14 +61,29 @@ function VideoWindow({ onClose, onNext }) {
   };
 
   return (
-    <>
-      <div className="modal-backdrop" onClick={onClose}>
-        <div className="modal-content" onClick={e => e.stopPropagation()}>
-          <button className="close-button" onClick={onClose}>×</button>
-          
-          <div className="left-section">
-            {isUploaded ? (
-              <video className="video-preview" src={videoUrl} controls />
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+        <button className="close-button" onClick={onClose}>×</button>
+        <div className="video-window">
+          <div
+            className={`upload-zone ${isDragging ? 'dragging' : ''}`}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            onClick={() => !isUploaded && fileInputRef.current.click()}
+          >
+            {isLoading ? (
+              <div className="loading">
+                <div className="spinner"></div>
+                <p>Uploading...</p>
+              </div>
+            ) : isUploaded ? (
+              <div className="upload-success">
+                <p>Upload Complete!</p>
+                <button className="next-button" onClick={onNext}>
+                  Next
+                </button>
+              </div>
             ) : (
               <div
                 className={`upload-zone ${isDragging ? 'dragging' : ''}`}
@@ -158,16 +139,7 @@ function VideoWindow({ onClose, onNext }) {
           </div>
         </div>
       </div>
-      {
-        showTextEdit && (
-          <VideoTextEditWindow 
-            onClose={() => setShowTextEdit(false)}
-            onSave={handleTextSave}
-            textData={videoText}
-          />
-        )
-      }
-    </>
+    </div>
   );
 }
 

@@ -12,7 +12,6 @@
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  height: 100%;
 }
 
 .upload-zone.dragging {
@@ -42,65 +41,12 @@
 
 .modal-content {
   background: #242424;
-  padding: 30px;
+  padding: 20px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   position: relative;
+  max-width: 500px;
   width: 90%;
-  max-width: 1200px;
-  min-height: 600px;
-  display: flex;
-  gap: 30px;
-}
-.modal-small {
-  width: 50%;
-}
-
-.left-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.left-section video {
-  height: 100%;
-}
-
-.right-section {
-  width: 300px;
-  padding: 20px;
-  border-left: 1px solid #3f3f3f;
-}
-
-.checklist {
-  list-style: none;
-  padding: 0;
-}
-
-.checklist-item {
-  padding: 8px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
-}
-
-.checklist-item.completed {
-  color: #646cff;
-}
-
-.bottom-buttons {
-  margin-top: auto;
-  display: flex;
-  gap: 10px;
-  padding-top: 20px;
-}
-
-.video-preview {
-  width: 100%;
-  aspect-ratio: 16/9;
-  background: #1a1a1a;
-  border-radius: 8px;
-  margin-bottom: 20px;
 }
 
 .close-button {
@@ -142,7 +88,7 @@
   text-align: center;
 }
 
-.fn-btns {
+.next-button {
   margin-top: 15px;
   padding: 8px 20px;
   background-color: #646cff;
@@ -153,7 +99,7 @@
   transition: background-color 0.3s;
 }
 
-.fn-btns:hover {
+.next-button:hover {
   background-color: #535bf2;
 }
 
@@ -167,17 +113,16 @@
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  width: 100%;
 }
 
 .text-edit-area {
-  min-height: 60%;
+  min-height: 200px;
   padding: 12px;
   border-radius: 4px;
   background-color: #1a1a1a;
   color: white;
   border: 1px solid #3f3f3f;
-  resize: none;
+  resize: vertical;
 }
 
 .text-edit-area:focus {
