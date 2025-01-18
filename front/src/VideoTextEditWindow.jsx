@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function VideoTextEditWindow({ onClose, onNext, textData = "" }) {
+function VideoTextEditWindow({ onClose, onSave, textData = "" }) {
   const [editedText, setEditedText] = useState(textData);
   const [wordCount, setWordCount] = useState(0);
   const CHR_LIMIT = 500;
@@ -23,7 +23,7 @@ function VideoTextEditWindow({ onClose, onNext, textData = "" }) {
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
+      <div className="modal-content modal-small" onClick={e => e.stopPropagation()}>
         <button className="close-button" onClick={onClose}>×</button>
         <div className="video-text-edit">
           <h2>Edit Video Text</h2>

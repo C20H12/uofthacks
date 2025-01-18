@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import {BACK_URL} from "./VideoWindow"
 
 function ImageResults({ onClose, videoText, selectedOptions }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -10,7 +11,7 @@ function ImageResults({ onClose, videoText, selectedOptions }) {
   }, []);
 
   const generateImages = async () => {
-    console.log(videoText, selectedOptions)
+    console.log(videoText, selectedOptions, BACK_URL)
     try {
       setIsLoading(true);
       // const response = await fetch('YOUR_API_ENDPOINT', {
