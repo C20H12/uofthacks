@@ -49,8 +49,6 @@ count = 0
 
 images = []
 
-MAX_ATTEMPTS = 2
-
 while len(images) <= 0 and count < MAX_ATTEMPTS: 
     images = model.generate_images(
         prompt=prompt,
