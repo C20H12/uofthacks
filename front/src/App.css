@@ -246,17 +246,11 @@
 /* Landing Page */
 .landing-page {
   min-height: 100vh;
-  background-color: linear-gradient(180deg, #1a2b3c 0%, #3c567b 100%);
+  /* background-color: linear-gradient(180deg, #1a2b3c 0%, #3c567b 100%); */
   position: relative;
   overflow: hidden;
   color: white;
   font-family: system-ui, -apple-system, sans-serif;
-  /* background-image: url(wave3.png); */
-  background-size: 50%;
-  background-repeat: repeat-x;
-  background-position-x: 100px;
-  background-position-y: center;
-  animation: move-waves 9.5s linear infinite;
 }
 
 /* Animated Background Elements */
@@ -315,25 +309,18 @@ h2, h3, h4 {
   margin: 0.5rem 0;
 }
 
-/* CTA Box */
-.get-started-box {
-  border: 1px solid #7a7dd3;
-  padding: 20px;
-  background: #242424;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  max-width: 400px;
-  margin: 2rem auto;
-}
-
 .open-button {
   padding: 10px 20px;
   background-color: #646cff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   color: white;
+  width: 400px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .open-button:hover {
@@ -372,6 +359,7 @@ h2, h3, h4 {
   -webkit-background-clip: text;
   border: 2px solid transparent;
   color: transparent;
+  font-weight: bold;
 }
 
 /* Animation For Waves */

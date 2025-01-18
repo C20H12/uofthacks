@@ -78,14 +78,18 @@ function VideoWindow({ onClose, onNext }) {
   const uploadVideo = async (file) => {
     setIsLoading(true);
     try {
-
+      const buffer = await file.arrayBuffer();
+      let binary = '';
+      const bytes = new Uint8Array(buffer);
+      const len = bytes.byteLength;
+      for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      const b64bytes = btoa(binary);
+      console.log(b64bytes)
       const res = await fetch(BACK_URL + "/upload_video", {
         method: 'POST',
-        body: file,
-        headers: {
-          'Access-Control-Allow-Origin':'*',
-          'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
-        }
+        body: ""
       });
       console.log(res);
       
