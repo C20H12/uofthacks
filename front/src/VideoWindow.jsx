@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react';
 
-function VideoWindow({ onClose }) {
+function VideoWindow({ onClose, onNext }) {
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isUploaded, setIsUploaded] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleDragOver = (e) => {
@@ -40,11 +41,12 @@ function VideoWindow({ onClose }) {
   const uploadVideo = async (file) => {
     setIsLoading(true);
     try {
-      // Simulate upload delay
       await new Promise(resolve => setTimeout(resolve, 2000));
       // Add your actual upload logic here
       console.log('Video uploaded:', file.name);
+      setIsUploaded(true);
     } catch (error) {
+      alert("error: " + error);
       console.error('Upload failed:', error);
     } finally {
       setIsLoading(false);
@@ -61,12 +63,19 @@ function VideoWindow({ onClose }) {
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            onClick={() => fileInputRef.current.click()}
+            onClick={() => !isUploaded && fileInputRef.current.click()}
           >
             {isLoading ? (
               <div className="loading">
                 <div className="spinner"></div>
                 <p>Uploading...</p>
+              </div>
+            ) : isUploaded ? (
+              <div className="upload-success">
+                <p>Upload Complete!</p>
+                <button className="next-button" onClick={onNext}>
+                  Next
+                </button>
               </div>
             ) : (
               <>
