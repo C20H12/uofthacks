@@ -157,6 +157,11 @@
   background-color: #535bf2;
 }
 
+.fn-btns:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .video-text-edit {
   display: flex;
   flex-direction: column;
@@ -205,5 +210,33 @@
   height: 16px;
   cursor: pointer;
   filter: invert(100%) hue-rotate(210deg);
+}
 
+.image-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 20px;
+  padding: 20px;
+}
+
+.image-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.image-grid img:hover {
+  transform: scale(1.05);
+}
+
+.word-count {
+  text-align: right;
+  margin: 8px 0;
+  font-size: 0.9em;
+  color: #888;
+}
+
+.text-error {
+  color: #ff4444;
 }

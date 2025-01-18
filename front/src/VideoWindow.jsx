@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import VideoTextEditWindow from './VideoTextEditWindow';
 
-function VideoWindow({ onClose }) {
+function VideoWindow({ onClose, onNext }) {
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
@@ -80,12 +80,18 @@ function VideoWindow({ onClose }) {
       await new Promise(resolve => setTimeout(resolve, 2000));
       setVideoUrl(URL.createObjectURL(file));
       setIsUploaded(true);
-
     } catch (error) {
       alert("error: " + error);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleNext = () => {
+    onNext({
+      videoText,
+      checkedItems
+    });
   };
 
   return (
@@ -146,7 +152,7 @@ function VideoWindow({ onClose }) {
             {isUploaded && (
               <div className="bottom-buttons">
                 <button className='fn-btns' onClick={handleTextEdit}>Edit Text</button>
-                <button className='fn-btns' onClick={()=>{}}>Next</button>
+                <button className='fn-btns' onClick={handleNext}>Generate Images</button>
               </div>
             )}
           </div>
