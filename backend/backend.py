@@ -202,10 +202,10 @@ def generate_image():
                 title = gemini_model.generate_content([f"Generate a title that best describes the scenes in the prompt: {prompt}. \
                                                        Only provide the title, nothing else"]).text
 
-                significance = gemini_model.generate_content([f"Generate a short description of the significance, \
-                                                              explaining why animals, atmosphere, positions, objects, etc, were chosen, \
-                                                              of the scenes in the prompt: {prompt}. \
-                                                       Only provide the description, nothing else"]).text
+                significance = gemini_model.generate_content([f"Generate a short first-person comic with short punchlines of the characters in the scenes in the prompt: \
+                                                              Make sure to narrate the main environment, actions, objects, \
+                                                              Make sure the word count is less than 100 words. \
+                                                              Consider the following: {prompt}. Start the story with (...In an alternative reality...). Use full sentences." ]).text
                 
                 with open(f'./storage/master_storage.json', 'r') as f_in: 
                     master_storage = json.load(f_in)
