@@ -55,7 +55,7 @@
   z-index: 2;
   width: 50%;
   margin: 0 3rem;
-  color: #ff7b7b;
+  color: var(--red2);
 }
 
 .content img {
@@ -68,7 +68,7 @@
 h1 {
   font-size: 4rem;
   margin: 1rem 0;
-  color: black;
+  color: var(--dark);
 }
 
 h2, h3, h4 {

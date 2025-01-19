@@ -6,7 +6,7 @@
 }
 
 .upload-zone {
-  border: 2px dashed #646cff;
+  border: 2px dashed var(--red2);
   border-radius: 8px;
   padding: 40px;
   text-align: center;
@@ -42,7 +42,7 @@
 }
 
 .modal-content {
-  background: #242424;
+  background: #97c19e;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -85,11 +85,10 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: white;
 }
 
 .checklist-item.completed {
-  color: #646cff;
+  color: var(--red2);
 }
 
 .bottom-buttons {
@@ -115,13 +114,13 @@
   border: none;
   font-size: 1.5em;
   cursor: pointer;
-  color: #646cff;
+  color: var(--red2);
 }
 
 .open-button {
   margin: 20px auto;
-  background-color: #646cff;
-  color: white;
+  background-color: var(--red2);
+  color: var(--dark);
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
@@ -148,8 +147,8 @@
 .fn-btns {
   margin-top: 15px;
   padding: 8px 20px;
-  background-color: #646cff;
-  color: white;
+  background-color: var(--red2);
+  color: var(--dark);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -178,20 +177,20 @@
   padding: 12px;
   border-radius: 4px;
   background-color: #1a1a1a;
-  color: white;
+  color: var(--dark);
   border: 1px solid #3f3f3f;
   resize: none;
 }
 
 .text-edit-area:focus {
   outline: none;
-  border-color: #646cff;
+  border-color: var(--red2);
 }
 
 .spinner {
   border: 10px solid white;
   border-radius: 50%;
-  border-top: 10px solid #646cff;
+  border-top: 10px solid var(--red2);
   width: 12px;
   height: 12px;
   animation: spin 2s linear infinite;
@@ -212,7 +211,6 @@
   width: 16px;
   height: 16px;
   cursor: pointer;
-  filter: invert(100%) hue-rotate(210deg);
 }
 
 .image-grid {
@@ -245,7 +243,7 @@
 .image-title {
   font-size: 2rem;
   margin: 10px 0;
-  color: white;
+  color: var(--dark);
   margin: .5rem;
   height: fit-content;
 }
@@ -253,7 +251,7 @@
 .image-significance {
   font-size: 1rem;
   margin: 10px 0;
-  color: white;
+  color: var(--dark);
   margin: .5rem;
   height: fit-content;
   flex-wrap: wrap;
@@ -293,15 +291,15 @@
 
 .alt-text-chip:hover {
   background: #3f3f3f;
-  border-color: #646cff;
+  border-color: var(--red2);
 }
 
 
 .open-button {
   padding: 10px 20px;
-  background-color: #646cff;
+  background-color: var(--red2);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  color: white;
+  color: var(--dark);
   width: 400px;
   border: none;
   border-radius: 4px;
@@ -312,7 +310,7 @@
 }
 
 .open-button:hover {
-  background-color: #535bf2;
+  background-color: #8c3f3f;
 }
 
 .profile-content {
