@@ -3,13 +3,19 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color: rgba(255, 255, 255, 0.87);
+  color: var(--dark);
   background: rgb(230,55,255);
   background: radial-gradient(circle, rgba(230,55,255,0.61390493697479) 0%, rgba(70,144,252,1) 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --navajo-white: #ffe0b5ff;
+  --straw: #ede580ff;
+  --olivine: #a4af69ff;
+  --dark: rgb(6, 5, 4);
+  --red2: #ff7b7b;
 }
 
 body {

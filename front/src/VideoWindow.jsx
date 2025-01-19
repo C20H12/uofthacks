@@ -159,7 +159,7 @@ function VideoWindow({ onClose, onNext }) {
                       style={{ display: 'none' }}
                     />
                     <p>Drag and drop a video file here</p>
-                    <p>or click to select</p>
+                    <p>or Click to Select</p>
                   </>
                 )}
               </div>

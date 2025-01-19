@@ -41,8 +41,8 @@ function App() {
       <div className="content">
         <h2>Want to see your everyday experience through an alternative Perspective?</h2>
         <h3>Look no further than...</h3>
-        <h1>AltSim - An AI Powered Story Maker!</h1>
-        <p>A webpage where you could transform your everyday experiences to comical adventures!</p>
+        <h1>AltSim</h1>
+        <p>A place where you could transform your everyday experiences to comical adventures!</p>
         <h4>and add your twist to it!</h4>
         
         <div className="powered-by">
@@ -50,14 +50,16 @@ function App() {
           <p>#BuildwithAI</p>
         </div>
 
-        <div className="buttons-container">
-          <button className="open-button" onClick={() => setCurrentView("video")}>
-            Get Started
-          </button>
-          <button className="open-button" onClick={() => setShowProfile(true)}>
-            View Gallery
-          </button>
-        </div>
+        <img src="/logo.png" alt="logo" />
+
+      </div>
+      <div className="buttons-container">
+        <button className="open-button" onClick={() => setCurrentView("video")}>
+          Get Started
+        </button>
+        <button className="open-button" onClick={() => setShowProfile(true)}>
+          View Gallery
+        </button>
       </div>
     </div>
   </>
