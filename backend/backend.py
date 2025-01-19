@@ -7,6 +7,8 @@ import os
 import vertexai
 from vertexai.preview.vision_models import ImageGenerationModel
 from flask import jsonify
+from datetime import datetime
+import json
 #from flask_socketio import SocketIO, emit
 
 import time
@@ -187,10 +189,11 @@ def generate_image():
         if len(images) > 0:
             gen_images = []
             for count, image in enumerate(images):
-                image.save(location=f'output_{count}.png', include_generation_parameters=False)
+                cur_time = datetime.now().strftime("%Y%m%d%H%M%S")
+                image.save(location=f'./storage/output_{cur_time}.png', include_generation_parameters=False)
                 # Optional. View the generated image in a notebook.
                 image.show()
-                gen_images.append(image_to_base64(f'output_{count}.png'))
+                gen_images.append(image_to_base64(f'./storage/output_{cur_time}.png'))
 
                 print(f"Created output image using {len(image._image_bytes)} bytes")
 
@@ -201,6 +204,12 @@ def generate_image():
                                                               explaining why animals, atmosphere, positions, objects, etc, were chosen, \
                                                               of the scenes in the prompt: {prompt}. \
                                                        Only provide the description, nothing else"]).text
+                
+                with open(f'./storage/master_storage.json', 'r') as f_in: 
+                    master_storage = json.load(f_in)
+                    master_storage.append({"title": title, "significance": significance, "images": gen_images})
+                    with open(f'./storage/master_storage.json', 'w') as f_out: 
+                        json.dump(master_storage, f_out)
 
                 return jsonify({"response": gen_images, "title": title, "significance": significance})
         # Example response:
@@ -211,6 +220,14 @@ def generate_image():
     except ResourceExhausted as e: 
        print(f"Resource exhausted - quota exceeded: {e}")
        return jsonify({"response": "Quota exceeded"})
+
+@app.route('/get_images', methods=['GET'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+def get_images():
+    with open(f'./storage/master_storage.json', 'r') as f: 
+        master_storage = json.load(f)
+        print(f"{master_storage=}")
+        return jsonify({"histories": master_storage})
 
 if __name__ == '__main__':
     app.run(debug=True)
