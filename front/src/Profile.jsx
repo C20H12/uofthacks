@@ -30,7 +30,7 @@ function Profile({ onClose }) {
       setTitles(data.histories.map(history => history.title));
       setSignificances(data.histories.map(history => history.significance));
     } catch (err) {
-      // setError(err.message);
+      setError(err.message);
     } finally {
       setIsLoading(false);
     }
