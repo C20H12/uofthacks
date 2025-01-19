@@ -197,7 +197,12 @@ def generate_image():
                 title = gemini_model.generate_content([f"Generate a title that best describes the scenes in the prompt: {prompt}. \
                                                        Only provide the title, nothing else"]).text
 
-                return jsonify({"response": gen_images, "title": title})
+                significance = gemini_model.generate_content([f"Generate a short description of the significance, \
+                                                              explaining why animals, atmosphere, positions, objects, etc, were chosen, \
+                                                              of the scenes in the prompt: {prompt}. \
+                                                       Only provide the description, nothing else"]).text
+
+                return jsonify({"response": gen_images, "title": title, "significance": significance})
         # Example response:
         # Created output image using 1234567 bytes
         else: 

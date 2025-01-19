@@ -6,6 +6,7 @@ function ImageResults({ onClose, videoText }) {
   const [images, setImages] = useState([]);
   const [title, setTitle] = useState("");
   const [error, setError] = useState(null);
+  const [significance, setSignificance] = useState("");
 
   useEffect(() => {
     generateImages();
@@ -33,6 +34,7 @@ function ImageResults({ onClose, videoText }) {
       }
       setImages(data.response.map(imgurl => "data:image/png;base64," + imgurl));
       setTitle(data.title);
+      setSignificance(data.significance);
     } catch (err) {
       setError('Failed to generate images ' + err);
     } finally {
@@ -59,7 +61,10 @@ function ImageResults({ onClose, videoText }) {
                 <img key={index} src={image} alt={`Generated ${index + 1}`} />
               ))}
             </div>
-            <h2 className="image-title">{title}</h2>
+            <div className="image-info">
+              <h2 className="image-title">{title}</h2>
+              <p className="image-significance">{significance}</p>
+            </div>
           </>
         )}
       </div>
