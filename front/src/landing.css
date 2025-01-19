@@ -1,6 +1,9 @@
 
 /* ======================================================= Base styles ==========================================================================*/
 
+body { 
+  font-family: system-ui, -apple-system, sans-serif;
+}
 /* Landing Page */
 .landing-page {
   content: "";
@@ -8,7 +11,6 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   background-image: radial-gradient(
       circle at 30% 20%,
       rgba(123, 237, 178, 1),
@@ -65,10 +67,41 @@
   top: 3rem;
 }
 
-h1 {
+h1 span {
   font-size: 4rem;
   margin: 1rem 0;
-  color: var(--dark);
+  /* color: var(--dark); */
+  background: linear-gradient(
+    45deg,
+    #8c52ff,
+    #ff914d
+  );
+}
+
+.alt-sim-container {
+  display: flex;
+  justify-content: center;
+  width: 35%; 
+}
+
+.alt-sim {
+  display: flex;
+  background: linear-gradient(
+    45deg,
+    #8c52ff,
+    #ff914d
+  );
+  -webkit-background-clip: text;
+  justify-content: center;
+  border: 2px solid transparent;
+  color: transparent;
+  font-weight: bold;
+}
+
+.intro-text {
+  font-size: 1rem; 
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #ff914d;
 }
 
 h2, h3, h4 {

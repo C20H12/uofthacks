@@ -39,9 +39,13 @@ function App() {
     <div className="landing-page">
 
       <div className="content">
-        <h2>Want to see your everyday experience through an alternative Perspective?</h2>
-        <h3>Look no further than...</h3>
-        <h1>AltSim</h1>
+        <h2 className="intro-text">AN ALTERNATE PERSPECTIVE</h2>
+        {/* <h3>Look no further than...</h3> */}
+        <div className="alt-sim-container">
+          <h1>
+            <span className="alt-sim">AltSim</span>
+          </h1>
+        </div>
         <p>A place where you could transform your everyday experiences to comical adventures!</p>
         <h4>and add your twist to it!</h4>
         
