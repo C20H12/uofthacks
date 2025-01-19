@@ -200,7 +200,7 @@ def generate_image():
                 title = gemini_model.generate_content([f"Generate a title that best describes the scenes in the prompt: {prompt}. \
                                                        Only provide the title, nothing else"]).text
 
-                significance = gemini_model.generate_content([f"Generate a short description of the significance, \
+                significance = gemini_model.generate_content([f"Generate a short story line with the scenes in the prompt, \
                                                               explaining why animals, atmosphere, positions, objects, etc, were chosen, \
                                                               of the scenes in the prompt: {prompt}. \
                                                        Only provide the description, nothing else"]).text
