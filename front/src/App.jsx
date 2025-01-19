@@ -46,24 +46,23 @@ function App() {
             <span className="alt-sim">AltSim</span>
           </h1>
         </div>
-        <p>A place where you could transform your everyday experiences to comical adventures!</p>
-        <h4>and add your twist to it!</h4>
+        <p>A place where you could transform your everyday experiences to comical adventures! <b>Add your twist to it!</b></p>
         
         <div className="powered-by">
           <p>Powered by <span className="google">Google Gemini 1.5 Pro</span> API</p>
-          <p>#BuildwithAI</p>
         </div>
+
+        <div className="buttons-container">
+        <button className="cta-button scale-in delay-300" onClick={() => setCurrentView("video")}>
+          Get Started
+        </button>
+        <button className="cta-button scale-in delay-300" onClick={() => setShowProfile(true)}>
+          View Gallery
+        </button>
+      </div>
 
         <img src="/logo.png" alt="logo" />
 
-      </div>
-      <div className="buttons-container">
-        <button className="open-button" onClick={() => setCurrentView("video")}>
-          Get Started
-        </button>
-        <button className="open-button" onClick={() => setShowProfile(true)}>
-          View Gallery
-        </button>
       </div>
     </div>
   </>

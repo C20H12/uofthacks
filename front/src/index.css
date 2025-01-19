@@ -10,12 +10,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  --navajo-white: #ffe0b5ff;
-  --straw: #ede580ff;
-  --olivine: #a4af69ff;
-  --dark: rgb(6, 5, 4);
-  --red2: #ff7b7b;
 }
 
 @font-face {

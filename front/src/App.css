@@ -135,9 +135,10 @@
 
 .buttons-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: left;
   align-items: center;
+  gap: 20px;
 }
 
 .upload-success {
