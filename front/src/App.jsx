@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import VideoWindow from './VideoWindow';
 import ImageResults from './ImageResults';
+import Profile from './Profile';
 import './App.css'
+import './landing.css'
 
 
 function App() {
   const [currentView, setCurrentView] = useState(''); // 'video' or 'results'
   const [resultData, setResultData] = useState(null);
+  const [showProfile, setShowProfile] = useState(false);
 
   const handleNext = (data) => {
     setResultData(data);
@@ -28,16 +31,12 @@ function App() {
         videoText={resultData?.videoText}
       />
     )}
+
+    {showProfile && (
+      <Profile onClose={() => setShowProfile(false)} />
+    )}
+
     <div className="landing-page">
-      <nav className="navbar">
-        <div className="logo"></div>
-        <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#profile">Profile</a>
-          <a href="#login">Login</a>
-        </div>
-      </nav>
 
       <div className="content">
         <h2>Want to see your everyday experience through an alternative Perspective?</h2>
@@ -51,9 +50,12 @@ function App() {
           <p>#BuildwithAI</p>
         </div>
 
-        <div className="get-started-box">
+        <div className="buttons-container">
           <button className="open-button" onClick={() => setCurrentView("video")}>
             Get Started
+          </button>
+          <button className="open-button" onClick={() => setShowProfile(true)}>
+            View Gallery
           </button>
         </div>
       </div>
