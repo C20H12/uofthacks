@@ -18,6 +18,8 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 #socketio = SocketIO(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+HOST = "0.0.0.0"
+
 def image_to_base64(image_path):
   """
   Converts an image from a given file path to a Base64 string.
@@ -143,7 +145,7 @@ def upload_video():
     #return result.text
     return jsonify({"description": result_describe.text, "alternates": results_alternate})
 
-PROJECT_ID = "imagegenproject" 
+PROJECT_ID = "imagegenproject-448306" 
 MODEL_NAME = "imagen-3.0-generate-001" #"imagen-3.0-fast-generate-001"
 vertexai.init(project=PROJECT_ID, location="us-central1")
 model = ImageGenerationModel.from_pretrained(MODEL_NAME)
@@ -230,5 +232,5 @@ def get_images():
         return jsonify({"histories": master_storage})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host=HOST)
 
