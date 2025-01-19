@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import VideoTextEditWindow from './VideoTextEditWindow';
 
-export const BACK_URL = "https://a09e97219e7e3f.lhr.life";
+export const BACK_URL = "http://localhost:5000"; //"https://4163cb1d3bd36a.lhr.life";
 
 function VideoWindow({ onClose, onNext }) {
   const [isDragging, setIsDragging] = useState(false);
