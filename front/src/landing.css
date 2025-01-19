@@ -68,6 +68,7 @@
 h1 {
   font-size: 4rem;
   margin: 1rem 0;
+  font-family: glitch2;
   color: var(--dark);
 }
 
