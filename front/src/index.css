@@ -3,7 +3,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color: var(--dark);
   background: rgb(230,55,255);
   background: radial-gradient(circle, rgba(230,55,255,0.61390493697479) 0%, rgba(70,144,252,1) 100%);
   font-synthesis: none;
@@ -14,7 +13,7 @@
 
 @font-face {
   font-family: glitch2;
-  src: url(mokoto-mokoto-regular-glitch-mark-2-400.ttf);
+  src: url(/mokoto-mokoto-regular-glitch-mark-2-400.ttf);
 }
 
 body {
